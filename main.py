@@ -1,3 +1,5 @@
+import time
+
 import pygame
 import random
 
@@ -59,6 +61,15 @@ class Spaceship(pygame.sprite.Sprite):
         self.rect.move_ip(-5, 0)
         if self.rect.right < 0:
             self.kill()
+class end_screen(pygame.sprite.Sprite):
+    def __init__(self):
+        super(end_screen,self).__init__()
+        self.surf = pygame.image.load('endscreen.png')
+        self.surf = pygame.transform.scale(self.surf, (500,500))
+        self.surf.set_colorkey((255,255,255), pygame.RLEACCEL)
+        self.surf.get_rect(
+            center=(500,500)
+        )
 
 pygame.init()
 
@@ -72,7 +83,7 @@ addspaship = pygame.USEREVENT + 2
 pygame.time.set_timer(addspaship, 1000)
 
 player = Player()
-
+endscreen = end_screen()
 
 spaships = pygame.sprite.Group()
 enemies = pygame.sprite.Group()
